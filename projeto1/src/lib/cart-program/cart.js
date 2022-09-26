@@ -24,11 +24,16 @@ export default class Cart {
       remove(this.items, { product });
    }
 
-   checkout(){
+   summary() {
       return {
          total: this.getTotal(),
          items: this.items,
       }
+   }
+
+   checkout() {
+      this.items = []
+      return this.summary
    }
 
 }

@@ -64,6 +64,27 @@ describe('Cart', () => {
    });
 
    describe('checkout()', () => {
+      it('espera-se que o checkout() retorne uma lista de items', () => {
+         cart.add({
+            product: product2,
+            quantity: 3,
+         });
+
+         expect(cart.checkout()).toMatchSnapshot();
+      });
+
+      it('espera-se que o carrinho seja resetado quando checkout() for chamado', () => {
+         cart.add({
+            product: product2,
+            quantity: 3,
+         });
+
+         cart.checkout()
+         expect(cart.getTotal()).toEqual(0);
+      });
+   });
+
+   describe('summary()', () => {
       it('espera-se um objeto com o total e uma lista de items', () => {
          cart.add({
             product,
@@ -74,8 +95,9 @@ describe('Cart', () => {
             product: product2,
             quantity: 3,
          });
-
-         expect(cart.checkout()).toMatchSnapshot();
+         
+         expect(cart.summary()).toMatchSnapshot();
+         expect(cart.getTotal()).toBeGreaterThan(0)
       });
-   });
+   })
 });

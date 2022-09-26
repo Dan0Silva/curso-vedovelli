@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Cart checkout() espera-se um objeto com o total e uma lista de items 1`] = `
+exports[`Cart checkout() espera-se que o checkout() retorne uma lista de items 1`] = `[Function]`;
+
+exports[`Cart summary() espera-se um objeto com o total e uma lista de items 1`] = `
 Object {
   "items": Array [
     Object {
