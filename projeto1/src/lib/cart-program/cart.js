@@ -5,11 +5,13 @@ export default class Cart {
    items = [];
 
    add(item) {
-      const itemToFind = { product: item.product };
-      if (find(this.items, itemToFind)) {
-         remove(this.items, itemToFind);
-      }
-      this.items.push(item);
+      this.items.forEach(foritem => {
+         if (foritem.product === item.product) {  
+            foritem.quantity += item.quantity;
+         }
+      });
+      
+      find(this.items, { product: item.product }) ? 0 : this.items.push(item);
    }
 
    getTotal() {
@@ -21,4 +23,12 @@ export default class Cart {
    remove(product) {
       remove(this.items, { product });
    }
+
+   checkout(){
+      return {
+         total: this.getTotal(),
+         items: this.items,
+      }
+   }
+
 }

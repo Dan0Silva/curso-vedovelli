@@ -14,50 +14,68 @@ describe('Cart', () => {
 
    beforeEach(() => (cart = new Cart()));
 
-   it('espera-se retornar zero de um getTotal() de uma nova instancia de Cart', () => {
-      expect(cart.getTotal()).toEqual(0);
+   describe('getTotal()', () => {
+      it('espera-se retornar zero de um getTotal() de uma nova instancia de Cart', () => {
+         expect(cart.getTotal()).toEqual(0);
+      });
+
+      it('espera-se receber o total do carrinho de compras [add]', () => {
+         const item = {
+            product,
+            quantity: 2, // 70776
+         };
+
+         cart.add(item);
+
+         expect(cart.getTotal()).toEqual(70776);
+      });
+
+      it('espera-se que somente um produto exista por vez', () => {
+         cart.add({
+            product,
+            quantity: 2,
+         });
+
+         cart.add({
+            product,
+            quantity: 1,
+         });
+
+         expect(cart.getTotal()).toEqual(106164);
+      });
+
+      it('espera-se que o total seja atualizado quando se remove um porduto da lista', () => {
+         cart.add({
+            product,
+            quantity: 2,
+         });
+
+         cart.add({
+            product: product2,
+            quantity: 1,
+         });
+
+         expect(cart.getTotal()).toEqual(118642);
+
+         cart.remove(product);
+
+         expect(cart.getTotal()).toEqual(47866);
+      });
    });
 
-   it('espera-se receber o total do carrinho de compras [add]', () => {
-      const item = {
-         product,
-         quantity: 2, // 70776
-      };
+   describe('checkout()', () => {
+      it('espera-se um objeto com o total e uma lista de items', () => {
+         cart.add({
+            product,
+            quantity: 2,
+         });
 
-      cart.add(item);
+         cart.add({
+            product: product2,
+            quantity: 3,
+         });
 
-      expect(cart.getTotal()).toEqual(70776);
-   });
-
-   it('espera-se que somente um produto exista por vez', () => {
-      cart.add({
-         product,
-         quantity: 2,
+         expect(cart.checkout()).toMatchSnapshot();
       });
-
-      cart.add({
-         product,
-         quantity: 1,
-      });
-
-      expect(cart.getTotal()).toEqual(35388);
-   });
-
-   it('espera-se que o total seja atualizado quando se remove um porduto da lista', () => {
-      cart.add({
-         product,
-         quantity: 2,
-      });
-
-      cart.add({
-         product: product2,
-         quantity: 1,
-      });
-
-      expect(cart.getTotal()).toEqual(118642);
-
-      cart.remove(product);
-
-      expect(cart.getTotal()).toEqual(47866);
    });
 });

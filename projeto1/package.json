@@ -1,24 +1,25 @@
 {
-   "name": "projeto1",
-   "version": "1.0.0",
-   "main": "index.js",
-   "devDependencies": {
-      "@babel/core": "^7.17.9",
-      "@babel/preset-env": "^7.16.11",
-      "@types/jest": "^27.4.1",
-      "babel-jest": "^28.0.1",
-      "jest": "^28.0.1"
-   },
-   "scripts": {
-      "test": "jest --passWithNoTests",
-      "test:watch": "jest --watchAll --passWithNoTests",
-      "test:coverange": "jest --coverange --passWithNoTests"
-   },
-   "keywords": [],
-   "author": "Danilo A. Silva",
-   "license": "ISC",
-   "description": "",
-   "dependencies": {
-      "lodash": "^4.17.21"
-   }
+  "name": "projeto1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "@types/jest": "^27.4.1",
+    "babel-jest": "^28.0.1",
+    "jest": "^28.0.1",
+    "prettier": "^2.7.1"
+  },
+  "scripts": {
+    "test": "jest --passWithNoTests",
+    "test:watch": "jest --watchAll --passWithNoTests",
+    "test:coverage": "jest --coverage --passWithNoTests"
+  },
+  "keywords": [],
+  "author": "Danilo A. Silva",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "description": ""
 }
