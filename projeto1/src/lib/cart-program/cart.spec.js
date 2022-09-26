@@ -99,5 +99,22 @@ describe('Cart', () => {
          expect(cart.summary()).toMatchSnapshot();
          expect(cart.getTotal().getAmount()).toBeGreaterThan(0)
       });
-   })
+   });
+
+   describe('condições especiais', () => {
+      it('espera-se que ao atingir uma condição, o sistema aplique um desconto no total do carrinho', () => {
+         const condition = {
+            percentage: 30,
+            minimum: 2
+         }
+
+         cart.add({
+            product,
+            condition,
+            quantity: 2,
+         });
+
+         expect(cart.getTotal().getAmount()).toEqual(49543)
+      });
+   });
 });
